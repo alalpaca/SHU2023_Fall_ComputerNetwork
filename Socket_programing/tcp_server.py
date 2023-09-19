@@ -29,7 +29,6 @@ client_listbox.pack(padx=10, pady=10)
 message_text = tk.Text(server_gui, height=10, width=40)
 message_text.pack(padx=10, pady=10)
 
-
 # 创建退出按钮
 def quit_server():
     for client_sock in connected_clients.values():
@@ -37,14 +36,12 @@ def quit_server():
     server_socket.close()
     server_gui.quit()
 
-
 quit_button = tk.Button(server_gui, text="退出", command=quit_server)
 quit_button.pack()
 
-
 # 处理客户端连接
 def handle_client(client_socket, username):
-    client_listbox.insert(tk.END, f"客户端账号：", username)  # 在图形界面中显示客户端账号
+    client_listbox.insert(tk.END, f"客户端账号: {username}")  # 在图形界面中显示客户端账号
     connected_clients[username] = client_socket
 
     # 创建关闭连接按钮
@@ -52,7 +49,7 @@ def handle_client(client_socket, username):
         client_sock = connected_clients.get(username)
         if client_sock:
             client_sock.close()
-            client_listbox.delete(client_listbox.get(0, tk.END).index(username))
+            client_listbox.delete(client_listbox.get(0, tk.END).index(f"客户端账号: {username}"))
             del connected_clients[username]
             close_button.destroy()  # 销毁关闭按钮
 
@@ -74,10 +71,9 @@ def handle_client(client_socket, username):
             break
 
     close_button.destroy()  # 移除关闭按钮
-    client_listbox.delete(client_listbox.get(0, tk.END).index(username))  # 从图形界面中移除客户端账号
+    client_listbox.delete(client_listbox.get(0, tk.END).index(f"客户端账号: {username}"))  # 从图形界面中移除客户端账号
     del connected_clients[username]
     client_socket.close()
-
 
 # 广播消息给其他客户端
 def broadcast_message(sender, message):
@@ -87,7 +83,6 @@ def broadcast_message(sender, message):
         except ConnectionError:
             continue
 
-
 # 接受客户端连接并创建线程处理
 def accept_connections():
     while True:
@@ -95,18 +90,18 @@ def accept_connections():
         print(f"接收到来自{addr}的连接")
         client.send("欢迎连接到服务器，请输入用户名和密码：".encode("utf-8"))
 
-        username = client.recv(1024).decode("utf-8")
-        password = client.recv(1024).decode("utf-8")
+        while True:  # 循环直到用户名和密码正确
+            username = client.recv(1024).decode("utf-8")
+            password = client.recv(1024).decode("utf-8")
 
-        if username in user_database and user_database[username] == password:
-            client.send("登录成功！".encode("utf-8"))
+            if username in user_database and user_database[username] == password:
+                client.send("登录成功！".encode("utf-8"))
+                break
+            else:
+                client.send("用户名或密码错误！请重新输入：".encode("utf-8"))
 
-            client_thread = threading.Thread(target=handle_client, args=(client, username))
-            client_thread.start()
-        else:
-            client.send("用户名或密码错误！".encode("utf-8"))
-
-
+        client_thread = threading.Thread(target=handle_client, args=(client, username))
+        client_thread.start()
 
 # 启动接受客户端连接的线程
 accept_thread = threading.Thread(target=accept_connections)
