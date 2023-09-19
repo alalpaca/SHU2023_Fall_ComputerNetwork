@@ -38,15 +38,15 @@
 
    - If login fail, the chat window will remind. You can try infinite times untill get a correct one.
 
-     <img src="C:\Users\Kevin Wang\AppData\Roaming\Typora\typora-user-images\image-20230919112123173.png" alt="image-20230919112123173" style="zoom: 33%;" />
+     <img src="https://github.com/alalpaca/SHU2023_Fall_ComputerNetwork/blob/main/Socket_programing/images/image-20230919112123173.png" alt="image-20230919112123173" style="zoom: 33%;" />
 
 5. sending messages
 
-   <img src="C:\Users\Kevin Wang\AppData\Roaming\Typora\typora-user-images\image-20230919112323332.png" alt="image-20230919112323332" style="zoom:33%;" />
+   <img src="https://github.com/alalpaca/SHU2023_Fall_ComputerNetwork/blob/main/Socket_programing/images/image-20230919112323332.png" alt="image-20230919112323332" style="zoom:33%;" />
 
 6. sending files(txt)
 
-   <img src="C:\Users\Kevin Wang\AppData\Roaming\Typora\typora-user-images\image-20230919112422703.png" alt="image-20230919112422703" style="zoom:33%;" />
+   <img src="https://github.com/alalpaca/SHU2023_Fall_ComputerNetwork/blob/main/Socket_programing/images/image-20230919112422703.png" alt="image-20230919112422703" style="zoom:33%;" />
 
    - the file can be choosed from your computer.
 
