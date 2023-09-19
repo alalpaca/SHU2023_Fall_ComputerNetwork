@@ -30,7 +30,7 @@
 
 3. the use python terminal to run the **tcp_client.py**
 
-   <img src="https://github.com/alalpaca/SHU2023_Fall_ComputerNetwork/blob/main/Socket_programing/images/image-20230919111635004.png" alt="image-20230919111635004" style="zoom:33%;" />
+   <img src="https://github.com/alalpaca/SHU2023_Fall_ComputerNetwork/blob/main/Socket_programing/images/image-20230919111635004.png" alt="image-20230919111635004" style="zoom:10%;" />
 
    you can open multiple client windows depending on how much clients you need 
 
